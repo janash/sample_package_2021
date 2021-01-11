@@ -12,7 +12,26 @@ from mpl_toolkits.mplot3d import Axes3D  #  noqa: F401
 
 
 def calculate_distance(rA, rB):
-    # This function calculates the distance between two points given as numpy arrays.
+    """Calculate the distance between two points.
+
+    Parameters
+    ----------
+    rA, rB : np.ndarray
+        The coordinates of each point.
+
+    Returns
+    -------
+    distance : float
+        The distance between the two points.
+    
+    Examples
+    --------
+    >>> r1 = np.array([0, 0, 0])
+    >>> r2 = np.array([0, 0.1, 0])
+    >>> calculate_distance(r1, r2)
+    0.1
+    """
+    
     d = rA - rB
     dist = np.linalg.norm(d)
     return dist
@@ -159,8 +178,67 @@ def bond_histogram(bond_list, save_location=None, dpi=300, graph_min=0, graph_ma
 
     return ax
 
+def calculate_molecular_mass(symbols):
+    """Calculate the mass of a molecule.
+    
+    Parameters
+    ----------
+    symbols : list
+        A list of elements.
+    
+    Returns
+    -------
+    mass : float
+        The mass of the molecule
+    """
+
+    mass = 0
+    for atom in symbols:
+        mass += atomic_weights[atom]
+    
+    return mass
+
+def calculate_center_of_mass(symbols, coordinates):
+   """Calculate the center of mass of a molecule.
+   
+   The center of mass is weighted by each atom's weight.
+   
+   Parameters
+   ----------
+   symbols : list
+       A list of elements for the molecule
+   coordinates : np.ndarray
+       The coordinates of the molecule.
+   
+   Returns
+   -------
+   center_of_mass: np.ndarray
+       The center of mass of the molecule.
+
+   Notes
+   -----
+   The center of mass is calculated with the formula
+   
+   .. math:: \\vec{R}=\\frac{1}{M} \\sum_{i=1}^{n} m_{i}\\vec{r_{}i}
+   
+   """
+
+   total_mass = calculate_molecular_mass(symbols)
+   
+   mass_array = np.zeros([len(symbols), 1])
+   
+   for i in range(len(symbols)):
+       mass_array[i] = atomic_weights[symbols[i]]
+   
+   center_of_mass = sum(coordinates * mass_array) / total_mass
+   
+   return center_of_mass
+
 
 def build_bond_list(coordinates, max_bond=1.5, min_bond=0):
+
+    if min_bond < 0:
+        raise ValueError(f"Invalid number {min_bond} entered for build_bond_list. Number should be greater than 0.")
 
     # Find the bonds in a molecule (set of coordinates) based on distance criteria.
     bonds = {}
