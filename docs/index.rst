@@ -5,13 +5,18 @@
 
 Welcome to sample_package_2021's documentation!
 =========================================================
+This is a Python package designed to read in, perfom analysis,
+and visualize molecular coordinates. The file formats `xyz` and `pdb` are
+currently supported.
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
+   about
    getting_started
    api
+   measure
 
 
 
