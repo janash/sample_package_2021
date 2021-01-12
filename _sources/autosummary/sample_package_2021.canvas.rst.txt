@@ -1,0 +1,6 @@
+sample\_package\_2021.canvas
+============================
+
+.. currentmodule:: sample_package_2021
+
+.. autofunction:: canvas
