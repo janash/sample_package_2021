@@ -9,6 +9,8 @@ This is a Python package designed to read in, perfom analysis,
 and visualize molecular coordinates. The file formats `xyz` and `pdb` are
 currently supported.
 
+This is a change to make sure the docs are updated.
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:

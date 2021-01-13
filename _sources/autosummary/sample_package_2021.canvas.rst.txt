@@ -1,4 +1,4 @@
-sample\_package\_2021.canvas
+﻿sample\_package\_2021.canvas
 ============================
 
 .. currentmodule:: sample_package_2021
