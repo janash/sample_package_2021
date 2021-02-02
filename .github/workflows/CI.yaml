@@ -20,7 +20,7 @@ jobs:
     steps:
      - uses: mscoutermarsh/ascii-art-action@master
        with:
-          text: '${{ github.event_name }} from ${{ github.actor }}':   
+          text: '${{ github.event_name }} from ${{ github.actor }}'   
   test:
     name: Test on ${{ matrix.os }}, Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
